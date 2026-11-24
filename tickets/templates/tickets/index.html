@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <title>IT-қолдау өтінімдері</title>
+</head>
+<body>
+    <h1>Жаңа өтінім жіберу</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Жіберу</button>
+    </form>
+
+    <h2>Өтінімдер тізімі</h2>
+    <ul>
+        {% for ticket in tickets %}
+            <li>
+                <strong>{{ ticket.title }}</strong> ({{ ticket.priority }}) — Мәртебесі: <b>{{ ticket.status }}</b>
+                <p>{{ ticket.description }}</p>
+            </li>
+        {% empty %}
+            <li>Өтінімдер жоқ</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
